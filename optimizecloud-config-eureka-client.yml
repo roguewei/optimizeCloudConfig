@@ -5,9 +5,9 @@
 server:
   port: 7001
 spring:
-  profiles: dev
+  profiles: dev1
   application:
-    name: microservicecloud-config-eureka-client
+    name: springcloud-config-eureka-client
 eureka:
   instance:
     hostname: eureka7001.com
@@ -15,19 +15,43 @@ eureka:
     register-with-eureka: false
     fetch-registry: false
     service-url:
-      defaultZone: http://eureka7001.com:7001/eureka/
+      # 单机版
+      #defaultZone: http://eureka7001.com:7001/eureka/
+      # 集群版
+      defaultZone: http://eureka7002.com:7002/eureka/,http://eureka7003.com:7003/eureka/
 ---
 server:
   port: 7002
 spring:
-  profiles: test
+  profiles: dev2
   application:
-    name: microservicecloud-config-eureka-client
+    name: springcloud-config-eureka-client
 eureka:
   instance:
-    hostname: eureka7001.com
+    hostname: eureka7002.com
   client:
     register-with-eureka: false
     fetch-registry: false
     service-url:
-      defaultZone: http://eureka7001.com:7001/eureka/
+      # 单机版
+      #defaultZone: http://eureka7002.com:7002/eureka/
+      # 集群版
+      defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7003.com:7003/eureka/
+---
+server:
+  port: 7003
+spring:
+  profiles: dev3
+  application:
+    name: springcloud-config-eureka-client
+eureka:
+  instance:
+    hostname: eureka7003.com
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      # 单机版
+      #defaultZone: http://eureka7003.com:7003/eureka/
+      # 集群版
+      defaultZone: http://eureka7002.com:7002/eureka/,http://eureka7001.com:7001/eureka/
