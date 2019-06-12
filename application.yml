@@ -1,0 +1,14 @@
+spring:
+  profiles:
+    active: dev
+---
+spring:
+  profiles: dev
+  application:
+    name: microservicecloud-config-winston-dev
+---
+spring:
+  profiles: test
+  application:
+    name: microservicecloud-config-winston-test
+# ---为分隔符，用作同一个配置文件配置不同环境，再用active来选择使用哪个
